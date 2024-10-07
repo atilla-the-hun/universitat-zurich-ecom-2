@@ -1,3 +1,4 @@
+// getHumeAccessToken.ts
 import 'server-only';
 import { fetchAccessToken } from "@humeai/voice";
 
@@ -12,7 +13,7 @@ export const getHumeAccessToken = async () => {
 
     const accessToken = await fetchAccessToken({
       apiKey: apiKey,
-      secretKey: secretKey,
+      clientSecret: secretKey, // Use the correct property name
     });
 
     if (!accessToken) {
