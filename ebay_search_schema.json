@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Indicates whether the search was successful"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "searchTerm": {
+          "type": "string",
+          "description": "The term that was searched for on eBay"
+        },
+        "productLinks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "link": {
+                "type": "string",
+                "format": "uri",
+                "description": "The URL of the product page"
+              },
+              "imageUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "The URL of the product image"
+              }
+            },
+            "required": ["link", "imageUrl"]
+          },
+          "description": "An array of objects containing product links and image URLs"
+        }
+      },
+      "required": ["searchTerm", "productLinks"]
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if the search was not successful"
+    }
+  },
+  "required": ["success"]
+}
