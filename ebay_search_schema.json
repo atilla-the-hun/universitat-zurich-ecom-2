@@ -26,11 +26,15 @@
                 "type": "string",
                 "format": "uri",
                 "description": "The URL of the product image"
+              },
+              "price": {
+                "type": "string",
+                "description": "The price of the product"
               }
             },
-            "required": ["link", "imageUrl"]
+            "required": ["link", "imageUrl", "price"]
           },
-          "description": "An array of objects containing product links and image URLs"
+          "description": "An array of objects containing product links, image URLs, and prices"
         }
       },
       "required": ["searchTerm", "productLinks"]

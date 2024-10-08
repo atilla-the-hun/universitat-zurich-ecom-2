@@ -4,6 +4,7 @@ interface ProductInfo {
   imageUrl: string;
   linkText: string;
   productUrl: string;
+  price: string; // Added price field
 }
 
 interface ProductSearchResult {
@@ -63,7 +64,8 @@ export const fetchProducts = async (parameters: string): Promise<ProductSearchRe
     const products: ProductInfo[] = items.map((item: any) => ({
       imageUrl: item.galleryURL?.[0] || '',
       linkText: 'Explore Product',
-      productUrl: item.viewItemURL?.[0] || ''
+      productUrl: item.viewItemURL?.[0] || '',
+      price: item.sellingStatus?.[0]?.currentPrice?.[0]?.__value__ || 'N/A' // Extract price
     })).filter((product: ProductInfo) => product.imageUrl && product.productUrl);
 
     return {
