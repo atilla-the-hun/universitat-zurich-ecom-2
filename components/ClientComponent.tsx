@@ -61,6 +61,31 @@ const handleToolCall: ToolCallHandler = async (
     }
   }
 
+  if (message.name === 'fetch_local_products') {
+    try {
+      const response = await fetch('/api/fetchLocalProducts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ parameters: message.parameters }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        return send.success(result.data);
+      } else {
+        return send.error(result.error);
+      }
+    } catch (error) {
+      return send.error({
+        error: 'Local product fetch error',
+        code: 'local_product_fetch_error',
+        level: 'warn',
+        content: 'There was an error fetching local products',
+      });
+    }
+  }
+
   return send.error({
     error: 'Tool not found',
     code: 'tool_not_found',

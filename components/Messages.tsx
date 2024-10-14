@@ -13,6 +13,14 @@ interface ProductInfo {
   imageUrl: string;
   linkText: string;
   productUrl: string;
+  price: string;
+  description: string;
+  flavor: string;
+  ingredients: string;
+  weight: string;
+  quantity: number;
+  brand: string;
+  type: string; // Added type property
 }
 
 interface ProductSearchResult {
@@ -56,6 +64,16 @@ const Messages = forwardRef<
                     >
                       {product.linkText}
                     </a>
+                    <div className="mt-2">
+                      <p><strong>Price:</strong> {product.price}</p>
+                      <p><strong>Description:</strong> {product.description}</p>
+                      <p><strong>Flavor:</strong> {product.flavor}</p>
+                      <p><strong>Ingredients:</strong> {product.ingredients}</p>
+                      <p><strong>Weight:</strong> {product.weight}</p>
+                      <p><strong>Quantity:</strong> {product.quantity}</p>
+                      <p><strong>Brand:</strong> {product.brand}</p>
+                      <p><strong>Type:</strong> {product.type}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -72,10 +90,10 @@ const Messages = forwardRef<
         );
       }
     } catch (error) {
-      console.error('Error parsing product search result:', error);
+      // console.error('Error parsing product search result:', error);
     }
     return null;
-  };
+  }
 
   return (
     <motion.div
